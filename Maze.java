@@ -27,7 +27,7 @@ public class Maze{
       int r=1;
       int s = 0;
       int e=0;
-      char ch='';
+      char ch=' ';
       String currline="";
       try{
         File dimensions = new File(filename);
