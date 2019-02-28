@@ -25,17 +25,38 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
       int c=1;
       int r=1;
-      File dimensions = new File(filename);
-      Scanner go = new Scanner(dimensions);
-      while(go.hasNextLine()){
-        c+=1;
+      try{
+        File dimensions = new File(filename);
       }
-      char[][] n = new char[File text = new File(filename);
+      catch(FileNotFoundException e){
+        System.out.println("File not found");
+      }
+      Scanner go = new Scanner(dimensions);
+      while(go.hasNext()){
+        c++;
+      }
+      while(go.hasNextLine()){
+        r++;
+      }
+      char[][] n = new char[r][c];
+      r=0;
+      c=0;
+      try{
+        File text = new File(filename);
+      }
+      catch(FileNotFoundException e){
+        System.out.println("File not found");
+      }
       Scanner inf = new Scanner(text);
       while(inf.hasNextLine()){
             while(inf.hasNext()){
-              String line = inf.nextLine();
-            System.out.println(line);//hopefully you can do other things with the line
+              String ch = inf.next();
+              n[r][c]=ch;
+              c++;
+            }
+            String line = inf.nextLine();
+              r++;
+
         }
         //COMPLETE CONSTRUCTOR
     }
