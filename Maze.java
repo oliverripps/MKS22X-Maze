@@ -25,6 +25,10 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
       int c=1;
       int r=1;
+      int s = 0;
+      int e=0;
+      char ch='';
+      String currline="";
       try{
         File dimensions = new File(filename);
       }
@@ -49,12 +53,18 @@ public class Maze{
       }
       Scanner inf = new Scanner(text);
       while(inf.hasNextLine()){
-            while(inf.hasNext()){
-              String ch = inf.next();
+            cuString line = inf.nextLine();rrline=inf.nextLine();
+            for(int i=0;i<currline.length();i++){
+              ch=currline.charAt(i);
               n[r][c]=ch;
+              if(ch=='S'){
+                s++;
+              }
+              if(ch=='E'){
+                e++;
+              }
               c++;
             }
-            String line = inf.nextLine();
               r++;
 
         }
@@ -125,15 +135,6 @@ public class Maze{
     */
 
 
-
-
-
-
-   /*Return the string that represents the maze.
-
-     It should look like the text file with some characters replaced.
-
-    */
     public String toString(){
       String str="";
       for(int i=0;i<maze.length;i++){
