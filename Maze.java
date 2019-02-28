@@ -104,19 +104,7 @@ public class Maze{
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
 
     */
-    public int solve(){
 
-            //find the location of the S.
-
-
-            //erase the S
-
-
-            //and start solving at the location of the s.
-
-            //return solve(???,???);
-
-    }
 
     /*
       Recursive Solve function:
@@ -135,25 +123,6 @@ public class Maze{
 
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
-
-
-        //automatic animation! You are welcome.
-        if(animate){
-
-            clearTerminal();
-            System.out.println(this);
-
-            wait(20);
-        }
-
-        //COMPLETE SOLVE
-
-        return -1; //so it compiles
-    }
-
-
-}
 
 
 
@@ -166,9 +135,16 @@ public class Maze{
 
     */
     public String toString(){
-
-            return "WRITE THIS METHOD";
-
+      String str="";
+      for(int i=0;i<maze.length;i++){
+        for(int l=0;l<maze[0].length;l++){
+          str+=maze[i][l];
+          if(l=maze[0].length-1){
+            str+="\n";
+          }
+        }
+      }
+      return str;
     }
 
 
