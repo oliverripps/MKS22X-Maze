@@ -6,6 +6,7 @@ public class Maze{
     private boolean animate;//false by default
 
     public Maze(String filename){
+      try{
         animate=false;
         int c=0;
         int r=0;
@@ -16,7 +17,7 @@ public class Maze{
         File dimensions = new File(filename);
         Scanner go = new Scanner(dimensions);
         while(go.hasNextLine()){
-        r=Scanner.nextLine().length();
+        r=go.nextLine().length();
         c++;
       }
 
@@ -42,6 +43,10 @@ public class Maze{
           throw new IllegalStateException();
       }
     }
+    catch(FileNotFoundException e){
+      System.out.println("File not found: " + filename);
+    }
+  }
 
 
     private void wait(int millis){
@@ -102,7 +107,7 @@ public class Maze{
       for(int i=0;i<maze.length;i++){
         for(int l=0;l<maze[0].length;l++){
           str+=maze[i][l];
-          if(l=maze[0].length-1){
+          if(l==maze[0].length-1){
             str+="\n";
           }
         }
@@ -119,8 +124,8 @@ public class Maze{
 
     */
     public int solve(){
-      int srow;
-      int scol;
+      int srow=0;
+      int scol=0;
 
       for(int i=0;i<maze.length;i++){
         for(int l=0;l<maze[0].length;l++){
@@ -131,7 +136,7 @@ public class Maze{
           }
         }
       }
-      solve(srow,scol);
+      return solve(srow,scol,0);
 
     }
 
@@ -163,7 +168,7 @@ public class Maze{
         if(maze[row][col]=='#'){
           return 0;
         }
-        if(maze[row]=='.'){
+        if(maze[row][col]=='.'){
           return 0;
         }
         if(maze[row][col]=='@'){
@@ -197,14 +202,11 @@ public class Maze{
     }
     public static void main(String[] args){
       String filename=args[0];
-      try{
-        Maze f= new Maze(filename);
-        f.solve();
-        System.out.println(f);
-      }
-      catch(FileNotFoundException e){
-        System.out.println("File not found: " + filename);
-      }
+      Maze f= new Maze(filename);
+      f.solve();
+      f.setAnimate(true);
+      System.out.println(f);
+
 
     }
 
