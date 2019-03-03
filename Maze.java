@@ -6,36 +6,25 @@ public class Maze{
     private boolean animate;//false by default
 
     public Maze(String filename){
-      animate=false;
-      int c=0;
-      int r=0;
-      int s = 0;
-      int e=0;
-      char ch=' ';
-      String currline="";
-      try{
+        animate=false;
+        int c=0;
+        int r=0;
+        int s = 0;
+        int e=0;
+        char ch=' ';
+        String currline="";
         File dimensions = new File(filename);
-      }
-      catch(FileNotFoundException e){
-        System.out.println("File not found");
-      }
-      Scanner go = new Scanner(dimensions);
-      while(go.hasNextLine()){
-        r=scanner.nextLine().length();
+        Scanner go = new Scanner(dimensions);
+        while(go.hasNextLine()){
+        r=Scanner.nextLine().length();
         c++;
       }
 
-      char[][] n = new char[r][c];
-      int l=0;
-      try{
+        char[][] n = new char[r][c];
+        int l=0;
         File text = new File(filename);
-      }
-      catch(FileNotFoundException e){
-        System.out.println("File not found");
-      }
-
-      Scanner inf = new Scanner(text);
-      while(inf.hasNextLine()){
+        Scanner inf = new Scanner(text);
+        while(inf.hasNextLine()){
             String line = inf.nextLine();
             for(int i=0;i<currline.length();i++){
               ch=currline.charAt(i);
@@ -47,10 +36,10 @@ public class Maze{
                 e++;
               }
             }
-              l++
+              l++;
         }
-      if(s!=1 || e !=1){
-        throw new IllegalStateException();
+        if(s!=1 || e !=1){
+          throw new IllegalStateException();
       }
     }
 
@@ -186,10 +175,10 @@ public class Maze{
         if(maze[row][col]==' '){
           maze[row][col]='@';
         }
-        int forward=solve(row, col + 1, count + 1);
-        int backward=solve(row, col - 1, count + 1);
-        int up=solve(row + 1, col, count + 1);
-        int down=solve(row - 1, col, count + 1);
+        int forward=solve(row, col + 1, c + 1);
+        int backward=solve(row, col - 1, c + 1);
+        int up=solve(row + 1, col, c + 1);
+        int down=solve(row - 1, col, c + 1);
         if(forward!=0){
           return forward;
         }
@@ -211,7 +200,7 @@ public class Maze{
       try{
         Maze f= new Maze(filename);
         f.solve();
-        System.out.println(toString(f));
+        System.out.println(f);
       }
       catch(FileNotFoundException e){
         System.out.println("File not found: " + filename);
