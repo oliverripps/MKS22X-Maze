@@ -1,30 +1,14 @@
 import java.util.*;
 import java.io.*;
+
 public class Maze{
     private char[][]maze;
     private boolean animate;//false by default
 
-    /*Constructor loads a maze text file, and sets animate to false by default.
-
-      1. The file contains a rectangular ascii maze, made with the following 4 characters:
-      '#' - Walls - locations that cannot be moved onto
-      ' ' - Empty Space - locations that can be moved onto
-      'E' - the location of the goal (exactly 1 per file)
-
-      'S' - the location of the start(exactly 1 per file)
-
-      2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
-
-
-      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then:
-
-         throw a FileNotFoundException or IllegalStateException
-
-    */
-
-    public Maze(String filename) throws FileNotFoundException{
-      int c=1;
-      int r=1;
+    public Maze(String filename){
+      animate=false;
+      int c=0;
+      int r=0;
       int s = 0;
       int e=0;
       char ch=' ';
@@ -36,15 +20,13 @@ public class Maze{
         System.out.println("File not found");
       }
       Scanner go = new Scanner(dimensions);
-      while(go.hasNext()){
+      while(go.hasNextLine()){
+        r=scanner.nextLine().length();
         c++;
       }
-      while(go.hasNextLine()){
-        r++;
-      }
+
       char[][] n = new char[r][c];
-      r=0;
-      c=0;
+      int l=0;
       try{
         File text = new File(filename);
       }
@@ -54,22 +36,22 @@ public class Maze{
 
       Scanner inf = new Scanner(text);
       while(inf.hasNextLine()){
-            cuString line = inf.nextLine();rrline=inf.nextLine();
+            String line = inf.nextLine();
             for(int i=0;i<currline.length();i++){
               ch=currline.charAt(i);
-              n[r][c]=ch;
+              n[l][i]=ch;
               if(ch=='S'){
                 s++;
               }
               if(ch=='E'){
                 e++;
               }
-              c++;
             }
-              r++;
-
+              l++
         }
-        
+      if(s!=1 || e !=1){
+        throw new IllegalStateException();
+      }
     }
 
 
