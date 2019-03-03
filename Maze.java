@@ -174,7 +174,13 @@ public class Maze{
         if(maze[row][col]=='E'){
           return true;
         }
-        if()
+        if(maze[row][col]==' '){
+          maze[row][col]='@';
+        }
+        int forward=solve(row, col + 1, count + 1);
+        int backward=solve(row, col - 1, count + 1);
+        int up=solve(row + 1, col, count + 1);
+        int down=solve(row - 1, col, count + 1);
 
         return -1; //so it compiles
     }
