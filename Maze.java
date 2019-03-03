@@ -73,21 +73,11 @@ public class Maze{
 
     public void clearTerminal(){
 
-        //erase terminal, go to top left of screen.
+
 
         System.out.println("\033[2J\033[1;1H");
       }
 
-   /*Return the string that represents the maze.
-
-     It should look like the text file with some characters replaced.
-
-    */
-    public String toString(){
-
-            return "WRITE THIS METHOD";
-
-    }
 
 
 
@@ -148,7 +138,7 @@ public class Maze{
           if(maze[i][l]=='S'){
             srow=i;
             scol=l;
-            maze[i][l]=0;
+            maze[i][l]=' ';
           }
         }
       }
