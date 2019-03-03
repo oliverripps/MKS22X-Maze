@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Maze{
-    private char[][]maze;
+    private char[][] maze;
     private boolean animate;//false by default
 
     public Maze(String filename){
@@ -10,15 +10,16 @@ public class Maze{
         animate=false;
         int c=0;
         int r=0;
-        int s = 0;
+        int s=0;
         int e=0;
         char ch=' ';
         String currline="";
         File dimensions = new File(filename);
         Scanner go = new Scanner(dimensions);
         while(go.hasNextLine()){
-        r=go.nextLine().length();
-        c++;
+
+        c=go.nextLine().length();
+        r++;
       }
 
         char[][] n = new char[r][c];
@@ -26,10 +27,12 @@ public class Maze{
         File text = new File(filename);
         Scanner inf = new Scanner(text);
         while(inf.hasNextLine()){
-            String line = inf.nextLine();
+            //System.out.println("HI");
+            currline = inf.nextLine();
             for(int i=0;i<currline.length();i++){
               ch=currline.charAt(i);
               n[l][i]=ch;
+              //System.out.println(ch);
               if(ch=='S'){
                 s++;
               }
@@ -39,6 +42,9 @@ public class Maze{
             }
               l++;
         }
+        maze=n;
+        //System.out.println(s);
+        //System.out.println(e);
         if(s!=1 || e !=1){
           throw new IllegalStateException();
       }
@@ -165,6 +171,7 @@ public class Maze{
 
             wait(20);
         }
+        int nummoves=-1;
         if(maze[row][col]=='#'){
           return 0;
         }
@@ -175,6 +182,7 @@ public class Maze{
           return 0;
         }
         if(maze[row][col]=='E'){
+          nummoves=c;
           return c;
         }
         if(maze[row][col]==' '){
@@ -184,28 +192,28 @@ public class Maze{
         int backward=solve(row, col - 1, c + 1);
         int up=solve(row + 1, col, c + 1);
         int down=solve(row - 1, col, c + 1);
-        if(forward!=0){
+        if(forward>0){
           return forward;
         }
-        if(backward!=0){
+        if(backward>0){
           return backward;
         }
-        if(up!=0){
+        if(up>0){
           return up;
         }
-        if(down!=0){
+        if(down>0){
           return down;
         }
         maze[row][col]='.';
 
-        return -1; //so it compiles
+        return nummoves; //so it compiles
     }
     public static void main(String[] args){
       String filename=args[0];
       Maze f= new Maze(filename);
-      f.solve();
       f.setAnimate(true);
-      System.out.println(f);
+      System.out.println(f.solve());
+
 
 
     }
