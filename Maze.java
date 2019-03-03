@@ -171,6 +171,15 @@ public class Maze{
 
             wait(20);
         }
+        if(maze[row][col]=='#'){
+          return 0;
+        }
+        if(maze[row]=='.'){
+          return 0;
+        }
+        if(maze[row][col]=='@'){
+          return 0;
+        }
         if(maze[row][col]=='E'){
           return true;
         }
@@ -181,7 +190,19 @@ public class Maze{
         int backward=solve(row, col - 1, count + 1);
         int up=solve(row + 1, col, count + 1);
         int down=solve(row - 1, col, count + 1);
-
+        if(forward!=0){
+          return forward;
+        }
+        if(backward!=0){
+          return backward;
+        }
+        if(up!=0){
+          return up;
+        }
+        if(down!=0){
+          return down;
+        }
+        
         return -1; //so it compiles
     }
 
