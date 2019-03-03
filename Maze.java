@@ -51,6 +51,7 @@ public class Maze{
       catch(FileNotFoundException e){
         System.out.println("File not found");
       }
+
       Scanner inf = new Scanner(text);
       while(inf.hasNextLine()){
             cuString line = inf.nextLine();rrline=inf.nextLine();
@@ -68,7 +69,7 @@ public class Maze{
               r++;
 
         }
-        //COMPLETE CONSTRUCTOR
+        
     }
 
 
