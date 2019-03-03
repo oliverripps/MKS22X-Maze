@@ -181,7 +181,7 @@ public class Maze{
           return 0;
         }
         if(maze[row][col]=='E'){
-          return true;
+          return c;
         }
         if(maze[row][col]==' '){
           maze[row][col]='@';
@@ -202,6 +202,7 @@ public class Maze{
         if(down!=0){
           return down;
         }
+        maze[row][col]='.';
         
         return -1; //so it compiles
     }
